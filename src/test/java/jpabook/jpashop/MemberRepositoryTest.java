@@ -13,13 +13,13 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Rollback(value = false)
 public class MemberRepositoryTest {
 
     @Autowired MemberRepository memberRepository;
 
     @Test
     @Transactional
+    @Rollback(value = false)
     public void testMember() throws Exception {
         //given
         Member member = new Member();

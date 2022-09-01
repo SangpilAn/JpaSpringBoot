@@ -1,17 +1,20 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    // 엔티티 매니저는 인젝션을 위해 PersistenceContext 어노테이션이 필요하지만,
+    // 스프링데이터 JPA 가 Autowired 어노테이션을 지원하기 때문에
+    // RequiredArgsConstructor 어노테이션 사용 가능
+    private final EntityManager em;
 
     public void save(Member member){
         em.persist(member);
